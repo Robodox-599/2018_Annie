@@ -35,8 +35,6 @@ void Drive::drive(float xAxis, float yAxis)
 	setFwdSpeed(yAxis);
 	setTurnSpeed(xAxis);
 
-	//driveStraight(yAxis, xAxis);
-
 	updateRightMotors(fwdSpeed + turnSpeed);
 	updateLeftMotors(fwdSpeed - turnSpeed);
 }
