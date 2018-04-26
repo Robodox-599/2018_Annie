@@ -16,11 +16,13 @@ class Catapult
 public:
 	Catapult();
 	~Catapult();
-	void reset(bool resetButton);
+	void reset(bool resetButton, float winchSpeed);
 	void launch(bool trigger);
 
 private:
-
+	TalonSRX* winchMotor;
+	DoubleSolenoid* release;
+	DigitalInput* catapultLimit;
 };
 
 

@@ -15,4 +15,9 @@
 
 #define DEADZONE (.2)
 
+#define Winch_Motor (3)
+
+#define Release_Piston_Left (1)
+#define Release_Piston_Right (2)
+
 #endif /* SRC_MACROS_H_ */
