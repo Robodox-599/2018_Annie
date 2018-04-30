@@ -11,6 +11,8 @@
 #include "Macros.h"
 #include "ctre/Phoenix.h"
 #include "WPILib.h"
+#include "Timer.h"
+
 class Catapult
 {
 public:
@@ -18,11 +20,13 @@ public:
 	~Catapult();
 	void reset(bool resetButton, float winchSpeed);
 	void launch(bool trigger);
+	void launchAndReset(bool trigger, float winchSpeed);
 
 private:
 	TalonSRX* winchMotor;
 	DoubleSolenoid* release;
 	DigitalInput* catapultLimit;
+	Timer* timer;
 };
 
 

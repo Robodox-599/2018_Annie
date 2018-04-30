@@ -9,9 +9,11 @@
 Catapult::Catapult()
 {
 	winchMotor = new TalonSRX(Winch_Motor);
-	release = new DoubleSolenoid(Release_Piston_Left, Release_Piston_Right);
+	release = new DoubleSolenoid(Release_Piston_1, Release_Piston_2);
 
 	catapultLimit = new DigitalInput(1);
+
+	timer = new Timer();
 
 	release->Set(DoubleSolenoid::kForward);
 }
@@ -43,5 +45,25 @@ void Catapult::launch(bool trigger)
 	if(trigger)
 	{
 		release->Set(DoubleSolenoid::kReverse);
+	}
+}
+
+void Catapult::launchAndReset(bool trigger, float winchSpeed)
+{
+	if(trigger)
+	{
+		release->Set(DoubleSolenoid::kReverse);
+		timer->Start();
+	}
+	if(timer->Get() > 0.2)
+	{
+		release->Set(DoubleSolenoid::kForward);
+		winchMotor->Set(ControlMode::PercentOutput, winchSpeed);
+		timer->Stop();
+		timer->Reset();
+	}
+	if(catapultLimit)
+	{
+		winchMotor->Set(ControlMode::PercentOutput, 0);
 	}
 }

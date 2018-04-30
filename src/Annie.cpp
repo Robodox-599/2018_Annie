@@ -13,9 +13,23 @@
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
 
+#include "Drive.h"
+#include "Intake.h"
+#include "Catapult.h"
+
 class Robot : public frc::IterativeRobot {
 public:
+	Catapult* catapult;
+	Intake* intake;
+	Drive* drive;
+	Joystick* xbox;
 	void RobotInit() {
+		drive = new Drive();
+		intake = new Intake();
+		catapult = new Catapult();
+		Compressor *comp599 = new Compressor();
+		xbox = new Joystick(0);
+		comp599->SetClosedLoopControl(true);
 		m_chooser.AddDefault(kAutoNameDefault, kAutoNameDefault);
 		m_chooser.AddObject(kAutoNameCustom, kAutoNameCustom);
 		frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
@@ -58,7 +72,13 @@ public:
 
 	void TeleopInit() {}
 
-	void TeleopPeriodic() {}
+	void TeleopPeriodic()
+	{
+		drive->drive(xbox->GetRawAxis(1), xbox->GetRawAxis(2));
+		catapult->launchAndReset(xbox->GetRawButton(1), 0.8);
+		intake->intakeBall(xbox->GetRawButton(2), 0.8);
+		intake->resetIntake(xbox->GetRawButton(3));
+	}
 
 	void TestPeriodic() {}
 

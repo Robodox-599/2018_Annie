@@ -18,10 +18,13 @@ public:
 	Intake();
 	~Intake();
 
-	void intakeBall();
+	void intakeBall(bool intake, float intakeSpeed);
+	void resetIntake(bool reset);
 
 private:
-
+	TalonSRX* intakeRoller;
+	DoubleSolenoid* intakeLeft;
+	DoubleSolenoid* intakeRight;
 
 };
 

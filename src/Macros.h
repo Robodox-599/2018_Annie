@@ -17,7 +17,15 @@
 
 #define Winch_Motor (3)
 
-#define Release_Piston_Left (1)
-#define Release_Piston_Right (2)
+#define Release_Piston_1 (1)
+#define Release_Piston_2 (2)
+
+#define Intake_Roller (2)
+
+#define Intake_Left_1 (3)
+#define Intake_Left_2 (4)
+
+#define Intake_Right_1 (5)
+#define Intake_Right_2 (6)
 
 #endif /* SRC_MACROS_H_ */
