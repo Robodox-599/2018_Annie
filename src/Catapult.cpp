@@ -11,7 +11,7 @@ Catapult::Catapult()
 	winchMotor = new TalonSRX(Winch_Motor);
 	release = new DoubleSolenoid(Release_Piston_1, Release_Piston_2);
 
-	catapultLimit = new DigitalInput(1);
+	catapultLimit = new DigitalInput(0);
 
 	timer = new Timer();
 

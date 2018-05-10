@@ -11,8 +11,8 @@
 Intake::Intake()
 {
 	intakeRoller = new TalonSRX(Intake_Roller);
-	intakeLeft = new DoubleSolenoid(Intake_Left_1, Intake_Left_2);
-	intakeRight = new DoubleSolenoid(Intake_Right_1, Intake_Right_2);
+	intakeLeft = new DoubleSolenoid(Intake_Piston_1, Intake_Piston_2);
+	intakeRight = new DoubleSolenoid(Intake_Piston_1, Intake_Piston_2);
 
 	intakeLeft->Set(DoubleSolenoid::kReverse);
 	intakeRight->Set(DoubleSolenoid::kReverse);
